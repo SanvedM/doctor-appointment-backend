@@ -1,0 +1,17 @@
+User (AbstractUser)
+- role (client, provider, admin)
+
+ProviderProfile
+- user (OneToOne)
+- specialty / service_type
+- working_hours (JSON)
+- is_active
+
+Appointment
+- client (FK User)
+- provider (FK ProviderProfile)
+- date
+- start_time
+- end_time
+- status (pending, confirmed, canceled)
+- notes
