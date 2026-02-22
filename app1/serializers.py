@@ -72,3 +72,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
             "appointment_time",
             "status",
         )
+
+
+
+
+class MyProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomeUser
+        fields = ("username", "first_name", "email", "mobile_no")
