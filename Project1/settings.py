@@ -28,9 +28,9 @@ SECRET_KEY = 'django-insecure-jcpt=w_k0pl-q1jzyk70$!6zo^(m^-cw^#$_nxk*s$una2r1-u
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOWED_ORIGINS =["http://localhost:5173",]
-CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOWED_ORIGINS =["http://localhost:5173","https://sanved-medcare-dev.vercel.app",]
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -47,10 +47,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',   # ⭐ must be high
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -160,3 +160,10 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "authorization",
+]
